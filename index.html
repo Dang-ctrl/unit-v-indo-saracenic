@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit V &mdash; European Influences, British Gothic &amp; Indo-Saracenic Architecture</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+  :root{
+    --bg:#131110;
+    --bg2:#1c1814;
+    --bg3:#241f19;
+    --ink:#ece2cc;
+    --ink-dim:#b8a98a;
+    --ink-faint:#7d715b;
+    --gold:#c9a24a;
+    --gold-bright:#e6c674;
+    --oxblood:#7f2a30;
+    --patina:#3f5c50;
+    --line: rgba(201,162,74,0.28);
+    --line-soft: rgba(201,162,74,0.14);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'EB Garamond', Georgia, 'Times New Roman', serif;
+    overflow:hidden;
+  }
+  .eyebrow{
+    font-family:'Cinzel', Georgia, serif;
+    font-weight:600;
+    letter-spacing:0.26em;
+    text-transform:uppercase;
+    font-size:0.68rem;
+    color:var(--gold);
+  }
+  h1,h2,h3{
+    font-family:'Cinzel', Georgia, serif;
+    font-weight:600;
+    text-wrap:balance;
+    margin:0;
+    color:var(--ink);
+  }
+  .deck-title{ font-family:'Cinzel Decorative', 'Cinzel', serif; }
+
+  .deck{
+    position:relative;
+    width:100%;
+    height:100vh;
+    background:
+      radial-gradient(ellipse at 20% -10%, rgba(201,162,74,0.10), transparent 55%),
+      radial-gradient(ellipse at 100% 110%, rgba(127,42,48,0.16), transparent 50%),
+      var(--bg);
+    overflow:hidden;
+  }
+  .jaali{ position:absolute; inset:0; opacity:0.5; pointer-events:none; mix-blend-mode:screen; }
+
+  .slide{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column;
+    padding: 26px 4.6vw 58px;
+    visibility:hidden;
+  }
+  .slide.is-active{ visibility:visible; }
+
+  .frame{ position:absolute; inset:14px; border:1px solid var(--line); pointer-events:none; }
+  .frame::before,.frame::after{ content:""; position:absolute; width:30px; height:30px; border:1px solid var(--gold); opacity:0.55; }
+  .frame::before{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
+  .frame::after{ bottom:-1px; right:-1px; border-left:none; border-top:none; }
+
+  .slide-inner{
+    position:relative; flex:1;
+    display:flex; flex-direction:column; justify-content:center; gap:14px;
+    max-width:1240px; margin:0 auto; width:100%;
+  }
+
+  .kicker-row{ display:flex; align-items:center; gap:12px; }
+  .kicker-row .rule{ flex:0 0 34px; height:1px; background:var(--gold); opacity:0.6; }
+
+  .slide h1{ font-size:clamp(1.55rem, 3.1vw, 2.5rem); line-height:1.14; }
+  .slide .sub{ color:var(--ink-dim); font-size:clamp(0.92rem,1.3vw,1.1rem); font-style:italic; max-width:56ch; }
+
+  .layout-2col{ display:grid; grid-template-columns:1.15fr 0.95fr; gap:4vw; align-items:center; }
+  .layout-2col.reverse{ grid-template-columns:0.95fr 1.15fr; }
+  .layout-2col.reverse .visual-col{ order:-1; }
+
+  ul.points{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:11px; }
+  ul.points li{ position:relative; padding-left:24px; font-size:clamp(0.86rem,1.05vw,1rem); line-height:1.46; color:var(--ink); }
+  ul.points li::before{ content:""; position:absolute; left:0; top:0.5em; width:8px; height:8px; border:1px solid var(--gold); transform:rotate(45deg); }
+  ul.points b{ color:var(--gold-bright); font-weight:600; }
+
+  .visual-col{ display:flex; align-items:center; justify-content:center; }
+  .visual-col svg{ width:100%; height:auto; max-height:40vh; }
+
+  .card-grid{ display:grid; gap:16px; }
+  .card-grid.cols-4{ grid-template-columns:repeat(4,1fr); }
+  .card-grid.cols-3{ grid-template-columns:repeat(3,1fr); }
+  .card-grid.cols-6{ grid-template-columns:repeat(3,1fr); }
+  .card{
+    background:linear-gradient(180deg, var(--bg3), var(--bg2));
+    border:1px solid var(--line);
+    padding:16px 15px 14px;
+    display:flex; flex-direction:column; gap:7px;
+  }
+  .card .num{ font-family:'Cinzel',serif; color:var(--gold); font-size:0.7rem; letter-spacing:0.12em; }
+  .card h3{ font-size:0.96rem; line-height:1.25; }
+  .card p{ margin:0; color:var(--ink-dim); font-size:0.78rem; line-height:1.42; }
+  .card .tagline{ color:var(--gold-bright); font-size:0.74rem; font-style:italic; }
+
+  .compare{ display:grid; grid-template-columns:1fr auto 1fr; gap:20px; align-items:stretch; }
+  .compare .side{ background:var(--bg2); border:1px solid var(--line); padding:20px 22px; display:flex; flex-direction:column; gap:10px; }
+  .compare .side h3{ font-size:1.02rem; color:var(--gold-bright); }
+  .compare .side ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
+  .compare .side li{ font-size:0.86rem; color:var(--ink-dim); line-height:1.4; padding-left:15px; position:relative;}
+  .compare .side li::before{ content:"\2014"; position:absolute; left:0; color:var(--gold); }
+  .compare .mid{ display:flex; align-items:center; justify-content:center; }
+  .compare .mid svg{ width:56px; height:56px; }
+
+  .timeline{ display:flex; flex-direction:column; gap:0; position:relative; padding-left:26px; }
+  .timeline::before{ content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:var(--line); }
+  .timeline .step{ position:relative; padding:9px 0; }
+  .timeline .step::before{ content:""; position:absolute; left:-26px; top:15px; width:10px; height:10px; background:var(--bg); border:1px solid var(--gold); transform:rotate(45deg); }
+  .timeline .step h3{ font-size:0.92rem; color:var(--gold-bright); margin-bottom:2px; }
+  .timeline .step p{ margin:0; color:var(--ink-dim); font-size:0.8rem; max-width:60ch; }
+
+  .chrono-cols{ display:grid; grid-template-columns:1fr 1fr; gap:4vw; }
+
+  .table-wrap{ border:1px solid var(--line); background:var(--bg2); }
+  table.classify{ width:100%; border-collapse:collapse; font-size:0.85rem; }
+  table.classify th{ text-align:left; font-family:'Cinzel',serif; font-size:0.68rem; letter-spacing:0.1em; color:var(--gold); text-transform:uppercase; padding:10px 14px; border-bottom:1px solid var(--line); }
+  table.classify td{ padding:9px 14px; border-bottom:1px solid var(--line-soft); color:var(--ink-dim); }
+  table.classify tr:last-child td{ border-bottom:none; }
+  table.classify td.b1{ color:var(--ink); }
+  table.classify td.b3{ color:var(--gold-bright); font-style:italic; }
+
+  .callout{
+    border-left:2px solid var(--oxblood);
+    background:rgba(127,42,48,0.10);
+    padding:10px 16px;
+    font-size:0.82rem;
+    color:var(--ink-dim);
+    line-height:1.45;
+  }
+  .callout b{ color:var(--gold-bright); }
+
+  footer.slide-foot{
+    position:absolute; left:4.6vw; right:4.6vw; bottom:18px;
+    display:flex; align-items:center; justify-content:space-between;
+    font-family:'Cinzel',serif; font-size:0.62rem; letter-spacing:0.14em;
+    color:var(--ink-faint); text-transform:uppercase;
+  }
+
+  .chrome{ position:absolute; inset:0; pointer-events:none; z-index:30; }
+  .progress{ position:absolute; top:0; left:0; height:2px; background:var(--gold); box-shadow:0 0 8px rgba(201,162,74,0.6); }
+  .navdots{ position:absolute; bottom:18px; left:50%; transform:translateX(-50%); display:flex; gap:7px; pointer-events:auto; }
+  .navdots button{ width:6px; height:6px; border-radius:50%; border:1px solid var(--gold); background:transparent; cursor:pointer; padding:0; opacity:0.55; transition:opacity .2s, background .2s, width .2s; }
+  .navdots button.active{ opacity:1; background:var(--gold); width:16px; border-radius:4px; }
+
+  .arrow-btn{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:40px; height:40px; pointer-events:auto;
+    background:rgba(28,24,20,0.55); border:1px solid var(--line);
+    color:var(--gold); font-family:'Cinzel',serif; font-size:1rem;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    backdrop-filter:blur(2px);
+  }
+  .arrow-btn:hover{ background:rgba(201,162,74,0.14); border-color:var(--gold); }
+  .arrow-btn.prev{ left:14px; } .arrow-btn.next{ right:14px; }
+  .arrow-btn:disabled{ opacity:0.25; cursor:default; }
+
+  .hint{ position:absolute; top:18px; right:4.6vw; font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.18em; color:var(--ink-faint); text-transform:uppercase; }
+
+  @media (max-width:760px){
+    .layout-2col, .layout-2col.reverse{ grid-template-columns:1fr; gap:16px; }
+    .layout-2col .visual-col{ order:-1; max-height:20vh; }
+    .visual-col svg{ max-height:18vh; }
+    .card-grid.cols-4,.card-grid.cols-3,.card-grid.cols-6{ grid-template-columns:1fr 1fr; }
+    .compare{ grid-template-columns:1fr; } .compare .mid{ display:none; }
+    .chrono-cols{ grid-template-columns:1fr; }
+    .arrow-btn{ width:34px; height:34px; }
+    .hint{ display:none; }
+    .slide{ padding:18px 5vw 74px; }
+    table.classify{ font-size:0.72rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+  <svg class="jaali" id="jaaliBg" xmlns="http://www.w3.org/2000/svg"></svg>
+
+  <!-- 1 : TITLE -->
+  <section class="slide" data-title="Title">
+    <div class="frame"></div>
+    <div class="slide-inner" style="text-align:center; align-items:center;">
+      <svg width="120" height="120" viewBox="0 0 150 150" fill="none" class="reveal-icon">
+        <path d="M75 8 L75 30 M75 8 C 60 20 60 34 75 44 C 90 34 90 20 75 8 Z" stroke="var(--gold)" stroke-width="1.2"/>
+        <path d="M20 130 L20 70 C 20 40 47 20 75 20 C 103 20 130 40 130 70 L130 130" stroke="var(--gold)" stroke-width="1.4" fill="none"/>
+        <path d="M35 130 L35 78 C 35 52 52 34 75 34 C 98 34 115 52 115 78 L115 130" stroke="var(--gold)" stroke-width="1" fill="none" opacity="0.55"/>
+        <circle cx="75" cy="86" r="16" stroke="var(--gold)" stroke-width="0.8" opacity="0.6"/>
+        <path d="M8 130 H142 M8 138 H142" stroke="var(--gold)" stroke-width="1"/>
+      </svg>
+      <p class="eyebrow reveal-item">Unit V &middot; History of Architecture</p>
+      <h1 class="deck-title reveal-item" style="font-size:clamp(1.7rem,4.6vw,3rem); max-width:18ch;">European Influences, British Gothic &amp; Indo&#8209;Saracenic Architecture</h1>
+      <p class="sub reveal-item" style="max-width:56ch; text-align:center;">Chennai Field Study and the Fusion of Western &amp; Indian Styles</p>
+      <p class="reveal-item" style="font-family:'Cinzel',serif; letter-spacing:0.16em; font-size:0.66rem; color:var(--ink-faint); text-transform:uppercase; margin-top:4px;">28 &middot; 08</p>
+    </div>
+    <footer class="slide-foot"><span>Madras Presidency, c.1857&ndash;1913</span><span>01 / 16</span></footer>
+  </section>
+
+  <!-- 2 : ROADMAP -->
+  <section class="slide" data-title="Roadmap">
+    <div class="frame"></div>
+    <div class="slide-inner">
+      <div class="kicker-row reveal-item"><span class="rule"></span><span class="eyebrow">The Itinerary</span></div>
+      <h1 class="reveal-item">What This Unit Covers</h1>
+      <div class="card-grid cols-4" style="margin-top:6px;">
+        <div class="card reveal-item">
+          <svg viewBox="0 0 44 44" width="38" height="38"><path d="M6 38 V16 L22 6 L38 16 V38 Z" fill="none" stroke="var(--gold)" stroke-width="1.3"/><path d="M14 38 V24 H30 V38" fill="none" stroke="var(--gold)" stroke-width="1"/></svg>
+          <span class="num">I</span><h3>European Influences</h3>
+          <p>Colonial context, Neoclassical rationale and the new building typologies of the PWD era.</p>
+        </div>
+        <div class="card reveal-item">
+          <svg viewBox="0 0 44 44" width="38" height="38"><path d="M22 4 L22 12 M8 40 V20 C8 12 14 6 22 6 C30 6 36 12 36 20 V40" fill="none" stroke="var(--gold)" stroke-width="1.3"/></svg>
+          <span class="num">II</span><h3>British Gothic Revival</h3>
+          <p>Pugin, Ruskin, and Gothic's landmark expression across Bombay and Madras.</p>
+        </div>
+        <div class="card reveal-item">
+          <svg viewBox="0 0 44 44" width="38" height="38"><path d="M22 6 C 14 6 14 16 22 20 C 30 16 30 6 22 6 Z" fill="none" stroke="var(--gold)" stroke-width="1.3"/><path d="M10 40 V24 H34 V40" fill="none" stroke="var(--gold)" stroke-width="1.1"/></svg>
+          <span class="num">III</span><h3>Indo-Saracenic Architecture</h3>
+          <p>Origins, terminology, key architects and the political intent behind the hybrid style.</p>
+        </div>
+        <div class="card reveal-item">
+          <svg viewBox="0 0 44 44" width="38" height="38"><circle cx="22" cy="22" r="15" fill="none" stroke="var(--gold)" stroke-width="1.3"/><path d="M22 10 V34 M10 22 H34" stroke="var(--gold)" stroke-width="0.9" opacity="0.6"/></svg>
+          <span class="num">IV</span><h3>Chennai Field Study &amp; Fusion</h3>
+          <p>Senate House, Egmore, the High Court, Ripon Building &mdash; and what the fusion means.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-foot"><span>Unit V Overview</span><span>02 / 16</span></footer>
+  </section>
+
+  <!-- 3 : EUROPEAN INFLUENCES CONTEXT -->
+  <section class="slide" data-title="European Influences">
+    <div class="frame"></div>
+    <div class="slide-inner layout-2col">
+      <div>
+        <div class="kicker-row reveal-item"><span class="rule"></span><span class="eyebrow">Part I</span></div>
+        <h1 class="reveal-item" style="margin-bottom:14px;">European Influences in Colonial India</h1>
+        <ul class="points">
+          <li class="reveal-item"><b>Company to Crown &mdash;</b> Company rule expanded through the 18th century; after the 1857 Revolt, governance passed to the British Crown in 1858.</li>
+          <li class="reveal-item"><b>The Public Works Department &mdash;</b> became the institutional engine for administration, transport and public infrastructure under Crown rule.</li>
+          <li class="reveal-item"><b>Neoclassical &amp; Palladian first &mdash;</b> Greco-Roman symmetry read as order, institutional authority and permanence &mdash; ideal for government buildings.</li>
+          <li class="reveal-item"><b>A visual language of rule &mdash;</b> architecture was never just functional; by the late 19th century architects increasingly experimented with Indian vocabulary too.</li>
+        </ul>
+      </div>
+      <div class="visual-col reveal-item">
+        <svg viewBox="0 0 280 300" fill="none">
+          <rect x="30" y="120" width="220" height="150" stroke="var(--gold)" stroke-width="1.2"/>
+          <path d="M30 120 L140 40 L250 120" stroke="var(--gold)" stroke-width="1.2"/>
+          <rect x="60" y="150" width="30" height="70" stroke="var(--gold)" stroke-width="0.9" opacity="0.65"/>
+          <rect x="125" y="150" width="30" height="70" stroke="var(--gold)" stroke-width="0.9" opacity="0.65"/>
+          <rect x="190" y="150" width="30" height="70" stroke="var(--gold)" stroke-width="0.9" opacity="0.65"/>
+          <line x1="10" y1="270" x2="270" y2="270" stroke="var(--gold)" stroke-width="1.4"/>
+          <line x1="0" y1="278" x2="280" y2="278" stroke="var(--gold)" stroke-width="0.7" opacity="0.5"/>
+          <path d="M100 40 h80" stroke="var(--gold)" stroke-width="0.8" opacity="0.5"/>
+          <circle cx="140" cy="70" r="10" stroke="var(--gold)" stroke-width="0.8" opacity="0.6"/>
+        </svg>
+      </div>
+    </div>
+    <footer class="slide-foot"><span>Colonial Context</span><span>03 / 16</span></footer>
+  </section>
+
+  <!-- 4 : NEW BUILDING TYPOLOGIES -->
+  <section class="slide" data-title="New Typologies">
+    <div class="frame"></div>
+    <div class="slide-inner">
+      <div class="kicker-row reveal-item"><span class="rule"></span><span class="eyebrow">Part I &middot; New Typologies</span></div>
+      <h1 class="reveal-item">Building Types Colonial Rule Introduced</h1>
+      <div class="card-grid cols-6" style="margin-top:8px;">
+        <div class="card reveal-item"><span class="num">01</span><h3>Courts &amp; Judicial Complexes</h3><p>Law courts, small-causes courts and civil courts across presidency capitals.</p></div>
+        <div class="card reveal-item"><span class="num">02</span><h3>Secretariats &amp; Offices</h3><p>Administrative headquarters for the expanding bureaucratic state.</p></div>
+        <div class="card reveal-item"><span class="num">03</span><h3>Universities &amp; Colleges</h3><p>Senate houses, convocation halls and affiliated teaching institutions.</p></div>
+        <div class="card reveal-item"><span class="num">04</span><h3>Railway Stations &amp; Offices</h3><p>Termini and administrative buildings for a rapidly growing rail network.</p></div>
+        <div class="card reveal-item"><span class="num">05</span><h3>Town Halls &amp; Museums</h3><p>Municipal buildings, libraries and civic institutions for public life.</p></div>
+        <div class="card reveal-item"><span class="num">06</span><h3>Hospitals &amp; Post Offices</h3><p>Telegraph offices, hospitals and churches rounding out the new urban fabric.</p></div>
+      </div>
+    </div>
+    <footer class="slide-foot"><span>New Building Typologies</span><span>04 / 16</span></footer>
+  </section>
+
+  <!-- 5 : BRITISH GOTHIC REVIVAL -->
+  <section class="slide" data-title="British Gothic Revival">
+    <div class="frame"></div>
+    <div class="slide-inner layout-2col reverse">
+      <div>
+        <div class="kicker-row reveal-item"><span class="rule"></span><span class="eyebrow">Part II</span></div>
+        <h1 class="reveal-item" style="margin-bottom:14px;">British Gothic Revival Architecture</h1>
+        <ul class="points">
+          <li class="reveal-item"><b>Structural vocabulary &mdash;</b> pointed arches, ribbed vaults, tracery, tall spires and pinnacles, steep roofs.</li>
+          <li class="reveal-item"><b>A. W. N. Pugin (1812&ndash;52) &mdash;</b> argued Gothic expressed Christian morality and honest craftsmanship, not mere decoration.</li>
+          <li class="reveal-item"><b>John Ruskin (1819&ndash;1900) &mdash;</b> praised medieval handcraft, irregularity and &ldquo;structural honesty&rdquo;; his ideas spread through the Empire.</li>
+          <li class="reveal-item"><b>Adapted, not copied &mdash;</b> in India, Gothic met local materials, craftsmen and climate to form Victorian / Indo-Gothic.</li>
+        </ul>
+      </div>
+      <div class="visual-col reveal-item">
+        <svg viewBox="0 0 260 320" fill="none">
+          <path d="M130 20 C 90 55 90 95 130 118 C 170 95 170 55 130 20 Z" stroke="var(--gold)" stroke-width="1.3"/>
+          <path d="M50 300 V150 C 50 90 84 40 130 40 C 176 40 210 90 210 150 V300" stroke="var(--gold)" stroke-width="1.4"/>
+          <path d="M75 300 V160 C 75 108 98 66 130 66 C 162 66 185 108 185 160 V300" stroke="var(--gold)" stroke-width="0.9" opacity="0.55"/>
+          <circle cx="130" cy="150" r="20" stroke="var(--gold)" stroke-width="0.8" opacity="0.7"/>
+          <path d="M130 130 V170 M110 150 H150 M117 137 L143 163 M143 137 L117 163" stroke="var(--gold)" stroke-width="0.6" opacity="0.6"/>
+          <line x1="30" y1="300" x2="230" y2="300" stroke="var(--gold)" stroke-width="1.4"/>
+        </svg>
+      </div>
+    </div>
+    <footer class="slide-foot"><span>Gothic Vocabulary</span><span>05 / 16</span></footer>
+  </section>
+
+  <!-- 6 : GOTHIC LANDMARKS -->
+  <section class="slide" data-title="Gothic Landmarks">
+    <div class="frame"></div>
+    <div class="slide-inner">
+      <div class="kicker-row reveal-item"><span class="rule"></span><span class="eyebrow">Part II &middot; Precedents</span></div>
+      <h1 class="reveal-item">Gothic Revival Landmarks in India</h1>
+      <div class="card-grid cols-3" style="margin-top:10px;">
+        <div class="card reveal-item"><span class="num">1871&ndash;78</span><h3>Bombay High Court</h3><p class="tagline">Col. J. A. Fuller &middot; Early English Gothic</p><p>Strong vertical composition, octagonal towers and Gothic detailing faced in blue basalt.</p></div>
+        <div class="card reveal-item"><span class="num">1878&ndash;88</span><h3>CST &middot; Victoria Terminus</h3><p class="tagline">F. W. Stevens &middot; High Victorian Gothic</p><p>UNESCO reads it as an exchange between Victorian Gothic and Indian tradition &mdash; not Indo-Saracenic.</p></div>
+        <div class="card reveal-item"><span class="num">1869&ndash;78</span><h3>Mumbai University</h3><p class="tagline">Sir George Gilbert Scott &middot; Venetian Gothic</p><p>Convocation Hall &amp; Rajabai Tower &mdash; designed from Britain, without a site visit.</p></div>
+      </div>
+      <p class="reveal-item" style="color:var(--ink-dim); font-size:0.82rem; font-style:italic; margin-top:4px; max-width:80ch;">Together these form the Oval Maidan Gothic ensemble &mdash; UNESCO cites its climate-responsive balconies and verandahs as evidence of Indian adaptation within a European stylistic frame.</p>
+    </div>
+    <footer class="slide-foot"><span>Comparative Precedents</span><span>06 / 16</span></footer>
+  </section>
+
+  <!-- 7 : INDO-SARACENIC ORIGINS -->
+  <section class="slide" data-title="Indo-Saracenic Origins">
+    <div class="frame"></div>
+    <div class="slide-inner layout-2col">
+      <div>
+        <div class="kicker-row reveal-item"><span class="rule"></span><span class="eyebrow">Part III</span></div>
+        <h1 class="reveal-item" style="margin-bottom:14px;">Indo-Saracenic: Origins &amp; Architects</h1>
+        <ul class="points">
+          <li class="reveal-item"><b>A late colonial hybrid &mdash;</b> combined European planning with Mughal, Indo-Islamic, Rajput and Hindu architectural vocabulary.</li>
+          <li class="reveal-item"><b>The &ldquo;Saracenic&rdquo; problem &mdash;</b> James Fergusson's term compresses India's diverse traditions into one colonial category &mdash; modern scholarship treats it critically.</li>
+          <li class="reveal-item"><b>Key architects &mdash;</b> Robert Chisholm and Henry Irwin in Madras; Sir Swinton Jacob in Jaipur (Jeypore Portfolio, 1890); also Emerson, Scott, Stevens, Wittet and Mant.</li>
+        </ul>
+      </div>
+      <div class="visual-col reveal-item">
+        <svg viewBox="0 0 260 300" fill="none">
+          <path d="M130 30 C 95 55 95 85 130 100 C 165 85 165 55 130 30 Z" stroke="var(--gold)" stroke-width="1.3"/>
+          <line x1="130" y1="10" x2="130" y2="30" stroke="var(--gold)" stroke-width="1.2"/>
+          <circle cx="130" cy="10" r="4" fill="none" stroke="var(--gold)" stroke-width="1"/>
+          <rect x="55" y="100" width="150" height="170" stroke="var(--gold)" stroke-width="1.2"/>
+          <path d="M55 100 C 80 70 180 70 205 100" stroke="var(--gold)" stroke-width="1" opacity="0.6"/>
+          <rect x="75" y="150" width="22" height="120" stroke="var(--gold)" stroke-width="0.8" opacity="0.55"/>
+          <rect x="119" y="150" width="22" height="120" stroke="var(--gold)" stroke-width="0.8" opacity="0.55"/>
+          <rect x="163" y="150" width="22" height="120" stroke="var(--gold)" stroke-width="0.8" opacity="0.55"/>
+          <line x1="35" y1="270" x2="225" y2="270" stroke="var(--gold)" stroke-width="1.4"/>
+        </svg>
+      </div>
+    </div>
+    <footer class="slide-foot"><span>Hybrid Origins</span><span>07 / 16</span></footer>
+  </section>
+
+  <!-- 8 : INTENT + VOCABULARY -->
+  <section class="slide" data-title="Intent and Vocabulary">
+    <div class="frame"></div>
+    <div class="slide-inner">
+      <div class="kicker-row reveal-item"><span class="rule"></span><span class="eyebrow">Part III &middot; Reading the Style</span></div>
+      <h1 class="reveal-item" style="margin-bottom:4px;">Political Intent &amp; Visual Vocabulary</h1>
+      <div class="compare" style="margin-top:8px;">
+        <div class="side reveal-item">
+          <h3>Political &amp; Cultural Intent</h3>
+          <ul>
+            <li>Present British rule as versed in Indian history and tradition</li>
+            <li>Create institutions that appeared culturally &ldquo;appropriate&rdquo; to their setting</li>
+            <li>Connect new colonial buildings to India's monumental past</li>
+            <li>Not simple cultural respect &mdash; also a demonstration of control over Indian idiom</li>
+          </ul>
+        </div>
+        <div class="mid reveal-item">
+          <svg viewBox="0 0 64 64"><path d="M32 6 L58 20 V44 L32 58 L6 44 V20 Z" stroke="var(--gold)" stroke-width="1.2" fill="none"/><path d="M32 6 V58 M6 20 L58 44 M58 20 L6 44" stroke="var(--gold)" stroke-width="0.6" opacity="0.5"/></svg>
+        </div>
+        <div class="side reveal-item">
+          <h3>Typical Vocabulary</h3>
+          <ul>
+            <li>Onion domes, chhatris and domed kiosks</li>
+            <li>Minarets, chajjas and jharokhas</li>
+            <li>Cusped, scalloped and horseshoe arches</li>
+            <li>Jaali screens and decorative carved brackets</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-foot"><span>Style as Political Language</span><span>08 / 16</span></footer>
+  </section>
+
+  <!-- 9 : CHENNAI FIELD STUDY INTRO -->
+  <section class="slide" data-title="Chennai Field Study">
+    <div class="frame"></div>
+    <div class="slide-inner layout-2col reverse">
+      <div>
+        <div class="kicker-row reveal-item"><span class="rule"></span><span class="eyebrow">Part IV</span></div>
+        <h1 class="reveal-item" style="margin-bottom:14px;">Chennai as a Living Case Study</h1>
+        <ul class="points">
+          <li class="reveal-item"><b>A laboratory of hybridity &mdash;</b> Chisholm established the style in Madras; Irwin expanded it through government, rail and institutional projects.</li>
+          <li class="reveal-item"><b>Mixed references &mdash;</b> Chennai buildings combine European planning, Islamic/Mughal motifs, Byzantine references and Dravidian details.</li>
+          <li class="reveal-item"><b>Why it matters &mdash;</b> Chennai lets us study architectural hybridity directly, not a single &ldquo;pure&rdquo; style.</li>
+        </ul>
+      </div>
+      <div class="visual-col reveal-item">
+        <svg viewBox="0 0 260 260" fill="none">
+          <circle cx="130" cy="130" r="95" stroke="var(--gold)" stroke-width="1" opacity="0.5"/>
+          <circle cx="130" cy="130" r="60" stroke="var(--gold)" stroke-width="0.7" opacity="0.4"/>
+          <circle cx="130" cy="130" r="4" fill="var(--gold)"/>
+          <g stroke="var(--gold)" stroke-width="1">
+            <line x1="130" y1="130" x2="130" y2="35"/>
+            <line x1="130" y1="130" x2="205" y2="170"/>
+            <line x1="130" y1="130" x2="60" y2="185"/>
+            <line x1="130" y1="130" x2="70" y2="70"/>
+          </g>
+          <circle cx="130" cy="35" r="5" fill="none" stroke="var(--gold-bright)" stroke-width="1.2"/>
+          <circle cx="205" cy="170" r="5" fill="none" stroke="var(--gold-bright)" stroke-width="1.2"/>
+          <circle cx="60" cy="185" r="5" fill="none" stroke="var(--gold-bright)" stroke-width="1.2"/>
+          <circle cx="70" cy="70" r="5" fill="none" stroke="var(--gold-bright)" stroke-width="1.2"/>
+        </svg>
+      </div>
+    </div>
+    <footer class="slide-foot"><span>Field Study &mdash; Madras</span><span>09 / 16</span></footer>
+  </section>
+
+  <!-- 10 : SENATE HOUSE -->
+  <section class="slide" data-title="Senate House">
+    <div class="frame"></div>
+    <div class="slide-inner layout-2col">
+      <div>
+        <div class="kicker-row reveal-item"><span class="rule"></span><span class="eyebrow">Part IV &middot; Flagship Site</span></div>
+        <h1 class="reveal-item" style="margin-bottom:2px;">Senate House, University of Madras</h1>
+        <p class="sub reveal-item" style="margin-bottom:10px;">Robert Fellowes Chisholm &middot; 1874&ndash;1879 &middot; Indo-Saracenic, strongly Byzantine-influenced</p>
+        <ul class="points">
+          <li class="reveal-item">Monumental central hall beneath large domed forms and a polychromatic fa&ccedil;ade.</li>
+          <li class="reveal-item">Byzantine-inspired arches and capitals layered with Indian ornamental vocabulary.</li>
+          <li class="reveal-item">Large openings and elaborate interior detailing suited to the tropical climate.</li>
+          <li class="reveal-item">Marks Chisholm's shift from European revival styles toward an explicitly Indian idiom.</li>
+        </ul>
+      </div>
+      <div class="visual-col reveal-item">
+        <svg viewBox="0 0 260 300" fill="none">
+          <path d="M130 25 C100 45 100 75 130 90 C160 75 160 45 130 25 Z" stroke="var(--gold)" stroke-width="1.3"/>
+          <path d="M50 280 V160 C50 110 85 60 130 60 C175 60 210 110 210 160 V280" stroke="var(--gold)" stroke-width="1.3"/>
+          <circle cx="130" cy="175" r="26" stroke="var(--gold)" stroke-width="0.9" opacity="0.6"/>
+          <rect x="90" y="230" width="18" height="50" stroke="var(--gold)" stroke-width="0.8" opacity="0.6"/>
+          <rect x="121" y="230" width="18" height="50" stroke="var(--gold)" stroke-width="0.8" opacity="0.6"/>
+          <rect x="152" y="230" width="18" height="50" stroke="var(--gold)" stroke-width="0.8" opacity="0.6"/>
+          <line x1="30" y1="280" x2="230" y2="280" stroke="var(--gold)" stroke-width="1.4"/>
+        </svg>
+      </div>
+    </div>
+    <footer class="slide-foot"><span>Senate House &middot; 1874&ndash;79</span><span>10 / 16</span></footer>
+  </section>
+
+  <!-- 11 : THREE BUILDINGS -->
+  <section class="slide" data-title="Three Buildings">
+    <div class="frame"></div>
+    <div class="slide-inner">
+      <div class="kicker-row reveal-item"><span class="rule"></span><span class="eyebrow">Part IV &middot; Sites Documented</span></div>
+      <h1 class="reveal-item">Three More Chennai Landmarks</h1>
+      <div class="card-grid cols-3" style="margin-top:12px;">
+        <div class="card reveal-item">
+          <span class="num">1908</span><h3>Egmore Railway Station</h3>
+          <p class="tagline">Henry Irwin &amp; E. C. Bird &middot; Indo-Saracenic + Dravidian/Gothic</p>
+          <p>Monumental entrance porch, domes and cupolas, scalloped arches &mdash; and the South Indian Railway elephant emblem on the fa&ccedil;ade.</p>
+        </div>
+        <div class="card reveal-item">
+          <span class="num">1888&ndash;92</span><h3>Madras High Court</h3>
+          <p class="tagline">J. W. Brassington, completed under Henry Irwin &amp; J. H. Stephens &middot; Mature Indo-Saracenic</p>
+          <p>Domes, chhatris, minaret-like towers, courtyard planning, stained glass and painted ceilings.</p>
+        </div>
+        <div class="card reveal-item">
+          <span class="num">1909&ndash;13</span><h3>Ripon Building</h3>
+          <p class="tagline">G. S. T. Harris &middot; Indo-Saracenic + Neoclassical</p>
+          <p>Symmetrical Neoclassical plan crowned by a 141 ft Indo-Saracenic-character clock tower; seat of the Madras Corporation.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-foot"><span>Chennai Landmarks</span><span>11 / 16</span></footer>
+  </section>
+
+  <!-- 12 : CLASSIFICATION CAUTION -->
+  <section class="slide" data-title="Classification Caution">
+    <div class="frame"></div>
+    <div class="slide-inner">
+      <div class="kicker-row reveal-item"><span class="rule"></span><span class="eyebrow">A Terminology Caution</span></div>
+      <h1 class="reveal-item" style="margin-bottom:10px;">Four Buildings, Four Different Fusions</h1>
+      <div class="table-wrap reveal-item">
+        <table class="classify">
+          <thead><tr><th>Building</th><th>Architect</th><th>Style Classification</th></tr></thead>
+          <tbody>
+            <tr><td class="b1">Senate House</td><td>Robert Chisholm</td><td class="b3">Indo-Saracenic &middot; Byzantine-influenced</td></tr>
+            <tr><td class="b1">Egmore Station</td><td>Henry Irwin &amp; E. C. Bird</td><td class="b3">Indo-Saracenic + Dravidian/Gothic</td></tr>
+            <tr><td class="b1">Madras High Court</td><td>Brassington &rarr; Irwin &amp; Stephens</td><td class="b3">Mature Indo-Saracenic</td></tr>
+            <tr><td class="b1">Ripon Building</td><td>G. S. T. Harris</td><td class="b3">Indo-Saracenic + Neoclassical</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout reveal-item" style="margin-top:14px;"><b>Note:</b> CST is best described as High Victorian Gothic blended with Indian elements &mdash; UNESCO's own distinction &mdash; not Indo-Saracenic.</div>
+      <div class="callout reveal-item" style="margin-top:8px;"><b>1914:</b> Madras High Court was damaged by shelling from the German cruiser <i>SMS Emden</i> during the First World War.</div>
+    </div>
+    <footer class="slide-foot"><span>Reading the Classifications Carefully</span><span>12 / 16</span></footer>
+  </section>
+
+  <!-- 13 : FUSION ANALYSIS -->
+  <section class="slide" data-title="Fusion Analysis">
+    <div class="frame"></div>
+    <div class="slide-inner">
+      <div class="kicker-row reveal-item"><span class="rule"></span><span class="eyebrow">Synthesis</span></div>
+      <h1 class="reveal-item">Reading the Fusion</h1>
+      <div class="card-grid cols-3" style="margin-top:12px;">
+        <div class="card reveal-item" style="padding:20px 20px 18px;">
+          <h3 style="font-size:1.05rem;">Structural + Ornamental</h3>
+          <p style="font-size:0.86rem;">European planning and Gothic structural logic carried Indian domes, chhatris, jaalis and carved brackets as surface vocabulary &mdash; skeleton and skin.</p>
+        </div>
+        <div class="card reveal-item" style="padding:20px 20px 18px;">
+          <h3 style="font-size:1.05rem;">Climatic Adaptation</h3>
+          <p style="font-size:0.86rem;">Verandahs, deep chajjas, jaali screens and high ceilings &mdash; Indian responses to sun, rain and ventilation grafted onto European forms.</p>
+        </div>
+        <div class="card reveal-item" style="padding:20px 20px 18px;">
+          <h3 style="font-size:1.05rem;">Political Reading</h3>
+          <p style="font-size:0.86rem;">European scale signalled modern bureaucratic power; Indian motifs signalled cultural legitimacy &mdash; not simple respect, but a constructed visual language of rule.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-foot"><span>Fusion of Western &amp; Indian Styles</span><span>13 / 16</span></footer>
+  </section>
+
+  <!-- 14 : FIELD METHOD -->
+  <section class="slide" data-title="Field Methodology">
+    <div class="frame"></div>
+    <div class="slide-inner">
+      <div class="kicker-row reveal-item"><span class="rule"></span><span class="eyebrow">Method</span></div>
+      <h1 class="reveal-item">What the Field Study Records</h1>
+      <div class="card-grid cols-6" style="margin-top:10px;">
+        <div class="card reveal-item"><span class="num">01</span><h3>Site Documentation</h3><p>Orientation, approach, landscape and pedestrian circulation.</p></div>
+        <div class="card reveal-item"><span class="num">02</span><h3>Plans &amp; Elevations</h3><p>Axes, symmetry, entrance hierarchy and vertical circulation.</p></div>
+        <div class="card reveal-item"><span class="num">03</span><h3>Material Palette</h3><p>Brick, stone, lime plaster, stucco, timber, steel and stained glass.</p></div>
+        <div class="card reveal-item"><span class="num">04</span><h3>Ornament Study</h3><p>Form &rarr; material &rarr; technique &rarr; origin &rarr; function, for each motif.</p></div>
+        <div class="card reveal-item"><span class="num">05</span><h3>Climate Analysis</h3><p>Solar exposure, shading, ventilation, courtyards and jaali screening.</p></div>
+        <div class="card reveal-item"><span class="num">06</span><h3>Condition Notes</h3><p>Weathering, repairs, restoration evidence and conservation status.</p></div>
+      </div>
+    </div>
+    <footer class="slide-foot"><span>Documentation Method</span><span>14 / 16</span></footer>
+  </section>
+
+  <!-- 15 : CHRONOLOGY -->
+  <section class="slide" data-title="Chronology">
+    <div class="frame"></div>
+    <div class="slide-inner">
+      <div class="kicker-row reveal-item"><span class="rule"></span><span class="eyebrow">Timeline</span></div>
+      <h1 class="reveal-item" style="margin-bottom:10px;">Chronology &middot; 1857&ndash;1913</h1>
+      <div class="chrono-cols">
+        <div class="timeline">
+          <div class="step reveal-item"><h3>1857&ndash;58</h3><p>Revolt of 1857; the Crown assumes direct rule of India in 1858.</p></div>
+          <div class="step reveal-item"><h3>1869&ndash;78</h3><p>Rajabai Clock Tower &amp; Convocation Hall, Mumbai (Sir George Gilbert Scott).</p></div>
+          <div class="step reveal-item"><h3>1871&ndash;78</h3><p>Bombay High Court (Col. J. A. Fuller).</p></div>
+          <div class="step reveal-item"><h3>1874&ndash;79</h3><p>Senate House, Madras (Robert Chisholm).</p></div>
+        </div>
+        <div class="timeline">
+          <div class="step reveal-item"><h3>1878&ndash;88</h3><p>Victoria Terminus / CST, Mumbai (F. W. Stevens).</p></div>
+          <div class="step reveal-item"><h3>1888&ndash;92</h3><p>Madras High Court (Brassington &rarr; Irwin &amp; Stephens).</p></div>
+          <div class="step reveal-item"><h3>1908</h3><p>Egmore Railway Station (Henry Irwin &amp; E. C. Bird).</p></div>
+          <div class="step reveal-item"><h3>1909&ndash;13</h3><p>Ripon Building, Madras (G. S. T. Harris).</p></div>
+        </div>
+      </div>
+    </div>
+    <footer class="slide-foot"><span>Key Chronology</span><span>15 / 16</span></footer>
+  </section>
+
+  <!-- 16 : CONCLUSION -->
+  <section class="slide" data-title="Conclusion">
+    <div class="frame"></div>
+    <div class="slide-inner" style="text-align:center; align-items:center;">
+      <svg width="100" height="100" viewBox="0 0 120 120" fill="none" class="reveal-icon">
+        <circle cx="60" cy="60" r="44" stroke="var(--gold)" stroke-width="1"/>
+        <path d="M60 24 C42 36 42 56 60 66 C78 56 78 36 60 24 Z" stroke="var(--gold)" stroke-width="1.2" fill="none"/>
+        <line x1="60" y1="66" x2="60" y2="96" stroke="var(--gold)" stroke-width="1"/>
+      </svg>
+      <p class="eyebrow reveal-item">In Closing</p>
+      <h1 class="reveal-item" style="max-width:26ch;">A Built Record of Cultural Interaction</h1>
+      <p class="sub reveal-item" style="text-align:center; max-width:74ch;">Colonial Indian architecture evolved from direct adoption of European Neoclassical and Gothic models into increasingly complex hybrid forms. In Chennai, Chisholm and Irwin adapted European planning to Indian climate, craftsmanship and vocabulary &mdash; domes, chhatris, chajjas, jaali and ornament transforming Western institutional architecture into something functional, climatic, aesthetic and political at once.</p>
+    </div>
+    <footer class="slide-foot"><span>Unit V &mdash; Summary</span><span>16 / 16</span></footer>
+  </section>
+
+  <div class="chrome">
+    <div class="progress" id="progress"></div>
+    <button class="arrow-btn prev" id="prevBtn" aria-label="Previous slide">&#10094;</button>
+    <button class="arrow-btn next" id="nextBtn" aria-label="Next slide">&#10095;</button>
+    <div class="navdots" id="navdots"></div>
+    <div class="hint">Use &#8592; &#8594; or click to navigate</div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+(function(){
+  var svgns = "http://www.w3.org/2000/svg";
+  var bg = document.getElementById('jaaliBg');
+  bg.setAttribute('viewBox','0 0 100 100');
+  bg.setAttribute('preserveAspectRatio','none');
+  var defs = document.createElementNS(svgns,'defs');
+  var pattern = document.createElementNS(svgns,'pattern');
+  pattern.setAttribute('id','jp');
+  pattern.setAttribute('width','8'); pattern.setAttribute('height','8');
+  pattern.setAttribute('patternUnits','userSpaceOnUse');
+  pattern.setAttribute('patternTransform','rotate(45)');
+  var l1 = document.createElementNS(svgns,'line');
+  l1.setAttribute('x1','0'); l1.setAttribute('y1','0'); l1.setAttribute('x2','0'); l1.setAttribute('y2','8');
+  l1.setAttribute('stroke','#c9a24a'); l1.setAttribute('stroke-width','0.15');
+  pattern.appendChild(l1);
+  var l2 = l1.cloneNode();
+  l2.setAttribute('x1','4'); l2.setAttribute('x2','4');
+  pattern.appendChild(l2);
+  defs.appendChild(pattern);
+  bg.appendChild(defs);
+  var rect = document.createElementNS(svgns,'rect');
+  rect.setAttribute('width','100'); rect.setAttribute('height','100');
+  rect.setAttribute('fill','url(#jp)');
+  bg.appendChild(rect);
+
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length;
+  var current = 0;
+  var animating = false;
+
+  var progress = document.getElementById('progress');
+  var dotsWrap = document.getElementById('navdots');
+  var prevBtn = document.getElementById('prevBtn');
+  var nextBtn = document.getElementById('nextBtn');
+
+  slides.forEach(function(_, i){
+    var b = document.createElement('button');
+    b.addEventListener('click', function(){ goTo(i); });
+    dotsWrap.appendChild(b);
+  });
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+
+  function updateChrome(){
+    progress.style.width = (((current+1)/total)*100) + '%';
+    dots.forEach(function(d,i){ d.classList.toggle('active', i===current); });
+    prevBtn.disabled = current===0;
+    nextBtn.disabled = current===total-1;
+  }
+
+  function revealSlide(slide){
+    var items = slide.querySelectorAll('.reveal-item');
+    var icon = slide.querySelector('.reveal-icon');
+    var tl = gsap.timeline();
+    if(icon){ tl.fromTo(icon, {opacity:0, scale:0.85}, {opacity:1, scale:1, duration:0.6, ease:'power2.out'}, 0); }
+    tl.fromTo(items, {opacity:0, y:14}, {opacity:1, y:0, duration:0.5, ease:'power2.out', stagger:0.05}, icon?0.12:0);
+    return tl;
+  }
+
+  function goTo(i){
+    if(animating || i===current || i<0 || i>=total) return;
+    animating = true;
+    var outSlide = slides[current];
+    var inSlide = slides[i];
+    var dir = i>current ? 1 : -1;
+
+    gsap.timeline({ onComplete:function(){ animating=false; } })
+    .to(outSlide, {opacity:0, x:-30*dir, duration:0.32, ease:'power2.in'})
+    .set(outSlide, {visibility:'hidden'})
+    .set(outSlide.querySelectorAll('.reveal-item, .reveal-icon'), {clearProps:'all'})
+    .set(inSlide, {visibility:'visible', opacity:0, x:30*dir})
+    .set(inSlide.querySelectorAll('.reveal-item'), {opacity:0, y:14})
+    .call(function(){ current = i; updateChrome(); })
+    .to(inSlide, {opacity:1, x:0, duration:0.38, ease:'power2.out'})
+    .add(revealSlide(inSlide), '-=0.14');
+  }
+
+  prevBtn.addEventListener('click', function(){ goTo(current-1); });
+  nextBtn.addEventListener('click', function(){ goTo(current+1); });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowRight' || e.key===' '){ goTo(current+1); }
+    else if(e.key==='ArrowLeft'){ goTo(current-1); }
+  });
+
+  var touchStartX = null;
+  document.addEventListener('touchstart', function(e){ touchStartX = e.touches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    if(touchStartX===null) return;
+    var dx = e.changedTouches[0].clientX - touchStartX;
+    if(Math.abs(dx) > 50){ goTo(current + (dx<0?1:-1)); }
+    touchStartX = null;
+  }, {passive:true});
+
+  slides.forEach(function(s,i){ if(i!==0) s.style.visibility='hidden'; });
+  slides[0].classList.add('is-active');
+  slides[0].style.visibility='visible';
+  updateChrome();
+  revealSlide(slides[0]);
+})();
+</script>
+</body>
+</html>
